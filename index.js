@@ -46,9 +46,12 @@ app.get('/api/days-in-month', (req, res) => {
     // Calculating the number of days in the specified month
     const numberOfDays = getNumberOfDays(monthLowerCase, parsedYear);
 
-    // Sending the response with the number of days
-    res.json({ month: monthLowerCase, year: parsedYear, days: numberOfDays });
-});
+     // Generating the series of numbers from 1 to the number of days in the month
+     const series = Array.from({ length: numberOfDays }, (_, i) => i + 1);
+
+     // Sending the response with the number of days and the series
+     res.json({ month: monthLowerCase, year: parsedYear, days: numberOfDays, series: series });
+ });
 
 // Start the server
 const PORT = process.env.PORT || 3000;
